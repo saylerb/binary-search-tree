@@ -11,7 +11,7 @@ class BinarySearchNodeTest < Minitest::Test
 
   def test_that_class_node_can_take_value
     node = Node.new(99, "Zootopia")
-    assert_equal 99, node.score
+    asse t_equal 99, node.score
     assert_equal "Zootopia", node.title
   end
 
