@@ -26,5 +26,22 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal "Concussion", tree.root.title
   end 
 
+  def adding_node_to_left_side
+    tree = BinarySearchTree.new
+    tree.insert(82, "The Revenant")
+    tree.insert(61, "Concussion")
+    assert_equal 61, tree.root.left.score
+    assert_equal "Concussion", tree.root.left.title
+  end
+
+  def adding_node_to_right_side
+    tree = BinarySearchTree.new
+    tree.insert(61, "Concussion")
+    tree.insert(82, "The Revenant")
+    assert_equal 61, tree.root.right.score
+    assert_equal "Concussion", tree.root.right.title
+  end
+
+
 end
 
