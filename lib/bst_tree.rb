@@ -1,8 +1,11 @@
 require_relative "bst_node"
 
 class BinaryTree
-  def initialize
-    @root = Node.new
+
+  attr_reader :root
+
+  def initialize(root)
+    @root = root 
   end
 
   # TODO: break into insert left or right
