@@ -6,12 +6,12 @@ class BinarySearchNodeTest < Minitest::Test
   
   def test_if_creates_class_node
     node = Node.new(99, "Zootopia")
-    assert_equal Node, node
+    assert_equal Node, node.class
   end
 
   def test_that_class_node_can_take_value
     node = Node.new(99, "Zootopia")
-    asse t_equal 99, node.score
+    assert_equal 99, node.score
     assert_equal "Zootopia", node.title
   end
 
@@ -20,7 +20,7 @@ class BinarySearchNodeTest < Minitest::Test
     root = Node.new(90, "10 Cloverfield Lane")
     root.right = right_node
     assert_equal root.right.score , 83 
-    asser_equal root.right.title , "Deadpool"
+    assert_equal root.right.title , "Deadpool"
   end
 
   def test_that_node_has_a_left_node
