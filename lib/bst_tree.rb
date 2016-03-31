@@ -69,15 +69,6 @@ class BinarySearchTree
   end
 
 
-#  def max(current_node=@root)
-#    until current_node.right== nil
-#      current_node = current_node.right
-#    end
-#    max_node = Hash[current_node.title, current_node.score]
-#    max_node
-#  end
-
-
   def max(current=@root)
      if current.right == nil
        max = {current.title => current.score}
@@ -94,6 +85,10 @@ class BinarySearchTree
      end
    end
  
+  def load_file
+    input = File.readlines('input.txt')
+    input[0]
+  end
 
 
 end

@@ -15,7 +15,6 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(61, "Concussion")
     assert_equal 61 , tree.root.score
     assert_equal "Concussion", tree.root.title 
-
   end
 
   def test_that_you_can_insert_a_node
@@ -105,6 +104,9 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal ({"The Hateful Eight" => 75}), tree.min
   end
 
+  def test_load_first_line
+    assert_equal "71, Hannibal Buress: Animal Furnace", load_file
+  end
 
 end
 
