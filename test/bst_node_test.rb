@@ -1,6 +1,7 @@
 require "minitest/autorun"
 require "minitest/pride"
 require_relative  "../lib/bst_node"
+require_relative "../lib/bst_tree"
 
 class BinarySearchNodeTest < Minitest::Test
   
@@ -36,6 +37,5 @@ class BinarySearchNodeTest < Minitest::Test
     assert_equal 75, node.left.score 
   end
 
-
-end
+  end
 
