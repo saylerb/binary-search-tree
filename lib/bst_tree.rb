@@ -28,12 +28,13 @@ class BinarySearchTree
         end
       end
     end
+    depth_of(score)
   end
 
   def sort(current_node = @root, array = [])
     unless current_node == nil
       sort(current_node.left, array)
-      array << current_node.score
+      array << {current_node.title => current_node.score}
       sort(current_node.right, array) 
     end
     array
@@ -53,9 +54,46 @@ class BinarySearchTree
     end
   end
 
-  def depth_of(current=@root, depth=0)
-    
+  def depth_of(score, current=@root, depth=0)
+   if current == nil
+    nil
+   else
+     if current.score == score
+       depth
+     elsif score > current.score
+       depth_of(score, current.right, depth +=1)
+     elsif score < current.score
+       depth_of(score, current.left, depth +=1)
+     end
+   end
   end
+
+
+#  def max(current_node=@root)
+#    until current_node.right== nil
+#      current_node = current_node.right
+#    end
+#    max_node = Hash[current_node.title, current_node.score]
+#    max_node
+#  end
+
+
+  def max(current=@root)
+     if current.right == nil
+       max = {current.title => current.score}
+     else
+       max(current.right)
+     end
+   end
+
+  def min(current=@root)
+     if current.left == nil
+       min = {current.title => current.score}
+     else
+       min(current.left)
+     end
+   end
+ 
 
 
 end

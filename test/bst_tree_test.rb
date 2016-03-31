@@ -44,7 +44,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_adding_node_returns_depth
-    skip
     tree = BinarySearchTree.new
     depth_1 = tree.insert(61, "Bill % Ted")
     depth_2 = tree.insert(16, "Johnny English")
@@ -68,7 +67,11 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_include_returns_depth_number
-    skip
+    tree = BinarySearchTree.new
+    tree.insert(83, "Deadpool")
+    tree.insert(93, "Star Wars: The Force Awakens")
+    tree.insert(75, "The Hateful Eight")
+    assert_equal 1, tree.depth_of(75)
   end
 
   def test_outputting_array_of_sorted_nodes
@@ -76,16 +79,32 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(83, "Deadpool")
     tree.insert(93, "Star Wars: The Force Awakens")
     tree.insert(75, "The Hateful Eight")
-    assert_equal [75, 83, 93], tree.sort
+    expected_result = [{"The Hateful Eight" => 75}, {"Deadpool" => 83}, {"Star Wars: The Force Awakens" => 93}]
+    assert_equal expected_result, tree.sort
   end
   
   def test_outputting_tree_depth
-    skip
     tree = BinarySearchTree.new
-    depth_1 = tree.insert(83, "Deadpool")
-    depth_2 = tree.insert(93, "Star Wars")
-    assert_equal 0, depth_1
-    assert_equal 1, depth_2
+    assert_equal 0, tree.insert(83, "Deadpool")
+    assert_equal 1, tree.insert(93, "Star Wars")
   end
+
+  def test_find_max
+    tree = BinarySearchTree.new
+    tree.insert(83, "Deadpool")
+    tree.insert(93, "Star Wars: The Force Awakens")
+    tree.insert(75, "The Hateful Eight")
+    assert_equal ({"Star Wars: The Force Awakens" => 93}), tree.max
+  end
+
+  def test_find_min
+    tree = BinarySearchTree.new
+    tree.insert(83, "Deadpool")
+    tree.insert(93, "Star Wars: The Force Awakens")
+    tree.insert(75, "The Hateful Eight")
+    assert_equal ({"The Hateful Eight" => 75}), tree.min
+  end
+
+
 end
 
