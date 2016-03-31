@@ -100,7 +100,6 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal ({"Cruel Intentions" => 0}), tree.min
   end
 
-
   def test_load_file
     tree = BinarySearchTree.new
     tree.load_file
@@ -114,5 +113,48 @@ class BinarySearchTreeTest < Minitest::Test
          {" French Dirty"=>75},
          {" Hannibal Buress: Comedy Camisado"=>80}], tree.sort
     end
+
+#   def test_health
+#     tree = BinarySearchTree.new
+#     tree.insert(98, "Animals United")
+#     tree.insert(58, "Armageddon")
+#     tree.insert(36, "Bill & Ted's Bogus Journey")
+#     tree.insert(93, "Bill & Ted's Excellent Adventure")
+#     tree.insert(86, "Charlie's Angels")
+#     tree.insert(38, "Charlie's Country")
+#     tree.insert(69, "Collateral Damage")
+# 
+#     assert_equal [[98, 7, 100]] , tree.health(0) 
+#     assert_equal [[58, 6, 85]], tree.health(1)
+#     assert_equal ([[36, 2, 28], [93, 3, 42]]) , tree.health(2)
+#   end
+
+  def test_count_children
+    tree = BinarySearchTree.new
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    assert_equal 7, tree.count_children
+  end
+
+#   def test_count_left
+#     tree = BinarySearchTree.new
+#     tree.insert(98, "Animals United")
+#     tree.insert(58, "Armageddon")
+#     tree.insert(36, "Bill & Ted's Bogus Journey")
+#     tree.insert(93, "Bill & Ted's Excellent Adventure")
+#     tree.insert(86, "Charlie's Angels")
+#     tree.insert(38, "Charlie's Country")
+#     tree.insert(69, "Collateral Damage")
+# 
+#     assert_equal 6, tree.count_left
+#   end
+# 
+
 end
 
