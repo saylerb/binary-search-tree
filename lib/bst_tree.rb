@@ -95,9 +95,6 @@ class BinarySearchTree
 
   end
 
-  # def health(score)
-  # end
-
   def count_children(current=@root, count=0)
     if current.right == nil && current.left == nil
        count 
@@ -118,4 +115,3 @@ class BinarySearchTree
 
 
 end
-
