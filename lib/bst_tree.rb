@@ -1,4 +1,5 @@
 require_relative "bst_node"
+require 'csv'
 
 class BinarySearchTree
 
@@ -86,10 +87,13 @@ class BinarySearchTree
    end
  
   def load_file
-    input = File.readlines('input.txt')
-    input[0]
-  end
+     CSV.foreach('../lib/input.txt', 'r') do |score, title|
+       unless include?(score.to_i)
+         insert(score.to_i, title.lstrip)
+       end
+     end
 
+  end
 
 end
 

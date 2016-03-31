@@ -88,25 +88,31 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, tree.insert(93, "Star Wars")
   end
 
-  def test_find_max
+  def test_maximum
     tree = BinarySearchTree.new
-    tree.insert(83, "Deadpool")
-    tree.insert(93, "Star Wars: The Force Awakens")
-    tree.insert(75, "The Hateful Eight")
-    assert_equal ({"Star Wars: The Force Awakens" => 93}), tree.max
+    tree.load_file
+    assert_equal ({"The Little Engine That Could" => 100}), tree.max
   end
 
-  def test_find_min
+  def test_minimum
     tree = BinarySearchTree.new
-    tree.insert(83, "Deadpool")
-    tree.insert(93, "Star Wars: The Force Awakens")
-    tree.insert(75, "The Hateful Eight")
-    assert_equal ({"The Hateful Eight" => 75}), tree.min
+    tree.load_file
+    assert_equal ({"Cruel Intentions" => 0}), tree.min
   end
 
-  def test_load_first_line
-    assert_equal "71, Hannibal Buress: Animal Furnace", load_file
-  end
 
+  def test_load_file
+    tree = BinarySearchTree.new
+    tree.load_file
+    assert_equal 1, tree.depth_of(80)
+    assert [{" I Love You Phillip Morris"=>7},
+         {" A Ballerina's Tale"=>9}, {" Love"=>11}, {" Meet My Valentine"=>17},
+         {" Experimenter"=>55},
+         {" The Land Before Time XIV: Journey of the Brave"=>65},
+         {" Hellions"=>67},
+         {" Hannibal Buress: Animal Furnace"=>71},
+         {" French Dirty"=>75},
+         {" Hannibal Buress: Comedy Camisado"=>80}], tree.sort
+    end
 end
 
