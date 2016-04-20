@@ -4,7 +4,7 @@ require_relative  "../lib/bst_tree"
 
 require "pry"
 class BinarySearchTreeTest < Minitest::Test
-  
+
   def test_that_class_tree_exist
     tree = BinarySearchTree.new
     assert_equal tree.class, BinarySearchTree
@@ -14,7 +14,7 @@ class BinarySearchTreeTest < Minitest::Test
     tree = BinarySearchTree.new
     tree.insert(61, "Concussion")
     assert_equal 61 , tree.root.score
-    assert_equal "Concussion", tree.root.title 
+    assert_equal "Concussion", tree.root.title
   end
 
   def test_that_you_can_insert_a_node
@@ -23,7 +23,7 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(61, "Concussion")
     assert_equal 61 , tree.root.score
     assert_equal "Concussion", tree.root.title
-  end 
+  end
 
   def test_adding_node_to_left_side
     tree = BinarySearchTree.new
@@ -81,7 +81,7 @@ class BinarySearchTreeTest < Minitest::Test
     expected_result = [{"The Hateful Eight" => 75}, {"Deadpool" => 83}, {"Star Wars: The Force Awakens" => 93}]
     assert_equal expected_result, tree.sort
   end
-  
+
   def test_outputting_tree_depth
     tree = BinarySearchTree.new
     assert_equal 0, tree.insert(83, "Deadpool")
@@ -143,30 +143,30 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(38, "Charlie's Country")
     tree.insert(69, "Collateral Damage")
     #expected_array = [[[98, 7]], [[58, 6]], [[36, 2], [93, 3]],[[38, 1],[86, 2]], [[69, 10]]]
-    assert_equal 7, tree.count_children_at_node(98)
-    assert_equal 6, tree.count_children_at_node(58)
-    assert_equal 2, tree.count_children_at_node(36)
-    assert_equal 3, tree.count_children_at_node(93)
-    assert_equal 2, tree.count_children_at_node(86)
-    assert_equal 1, tree.count_children_at_node(36)
-    assert_equal 1, tree.count_children_at_node(69)
+    assert_equal 7, tree.count_children(98)
+    assert_equal 6, tree.count_children(58)
+    assert_equal 2, tree.count_children(36)
+    assert_equal 3, tree.count_children(93)
+    assert_equal 2, tree.count_children(86)
+    assert_equal 1, tree.count_children(36)
+    assert_equal 1, tree.count_children(69)
   end
 
 
-#     def test_health
-#     tree = BinarySearchTree.new
-#     tree.insert(98, "Animals United")
-#     tree.insert(58, "Armageddon")
-#     tree.insert(36, "Bill & Ted's Bogus Journey")
-#     tree.insert(93, "Bill & Ted's Excellent Adventure")
-#     tree.insert(86, "Charlie's Angels")
-#     tree.insert(38, "Charlie's Country")
-#     tree.insert(69, "Collateral Damage")
-# 
-#     assert_equal [[98, 7, 100]] , tree.health(0) 
-#     assert_equal [[58, 6, 85]], tree.health(1)
-#     assert_equal ([[36, 2, 28], [93, 3, 42]]) , tree.health(2)
-#   end
+    def test_health
+    tree = BinarySearchTree.new
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    assert_equal [[98, 7, 100]] , tree.health(0)
+    assert_equal [[58, 6, 85]], tree.health(1)
+    assert_equal ([[36, 2, 28], [93, 3, 42]]) , tree.health(2)
+  end
 
 #   def test_count_children
 #     tree = BinarySearchTree.new
@@ -177,10 +177,10 @@ class BinarySearchTreeTest < Minitest::Test
 #     tree.insert(86, "Charlie's Angels")
 #     tree.insert(38, "Charlie's Country")
 #     tree.insert(69, "Collateral Damage")
-# 
+#
 #     assert_equal 7, tree.count_children
 #   end
-# 
+#
 #   def test_count_left
 #     tree = BinarySearchTree.new
 #     tree.insert(98, "Animals United")
@@ -190,9 +190,9 @@ class BinarySearchTreeTest < Minitest::Test
 #     tree.insert(86, "Charlie's Angels")
 #     tree.insert(38, "Charlie's Country")
 #     tree.insert(69, "Collateral Damage")
-# 
+#
 #     assert_equal 6, tree.count_left
 #   end
-# 
+#
 
 end

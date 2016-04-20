@@ -6,7 +6,7 @@ class BinarySearchTree
   attr_accessor :root
 
   def initialize
-    @root = nil  
+    @root = nil
   end
 
   # TODO: break into insert left or right
@@ -36,17 +36,17 @@ class BinarySearchTree
     unless current_node == nil
       sort(current_node.left, array)
       array << {current_node.title => current_node.score}
-      sort(current_node.right, array) 
+      sort(current_node.right, array)
     end
     array
   end
 
   def include?(score_to_find, current=@root, depth = 0)
     if current == nil
-     false 
+     false
     elsif current.score == score_to_find
      true
-    elsif score_to_find > current.score 
+    elsif score_to_find > current.score
       include?(score_to_find, current.right, depth)
     elsif score_to_find < current.score
       include?(score_to_find, current.left, depth)
@@ -85,7 +85,7 @@ class BinarySearchTree
        min(current.left)
      end
    end
- 
+
   def load_file
      CSV.foreach('../lib/input.txt', 'r') do |score, title|
        unless include?(score.to_i)
@@ -95,23 +95,33 @@ class BinarySearchTree
 
   end
 
+  def health(depth, current=@root, result=[])
+    if depth_of(current.score) == depth
+      count = 1 + count_children(current)
+      total = 1.0 + count_children
+      puts [current.score, count, total].inspect
+      result << [current.score, count, ((count/total) * 100).floor]
+      puts result.inspect
+    else
+      if current.left
+        result = health(depth, current.left, result)
+      end
+      if current.right
+        result = health(depth, current.right, result)
+      end
+    end
+    result
+  end
+
+  private
+
   def count_children(current=@root, count=0)
-    if current.right == nil && current.left == nil
-       count 
-     else
-       count_right(current.right, count +=1)
-     end
+    if current.right
+      count = count_children(current.right, count + 1)
+    end
+    if current.left
+      count = count_children(current.left, count + 1)
+    end
+    count
   end
-
-  def count_left(current=@root, count=0)
-    if current.left == nil
-       count 
-     else
-       count_left(current.left, count +=1)
-     end
-  end
-
-
-
-
 end
