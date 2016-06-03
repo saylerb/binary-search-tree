@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require "minitest/pride"
-require_relative  "../lib/bst_tree"
+require "./lib/bst_tree"
 
 require "pry"
 class BinarySearchTreeTest < Minitest::Test
@@ -100,22 +100,21 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal ({"Cruel Intentions" => 0}), tree.min
   end
 
-#  def test_load_file
-#    tree = BinarySearchTree.new
-#    tree.load_file
-#    #    assert_equal 1, tree.depth_of(80)
-#    assert [{" I Love You Phillip Morris"=>7},
-#         {" A Ballerina's Tale"=>9}, {" Love"=>11}, {" Meet My Valentine"=>17},
-#         {" Experimenter"=>55},
-#         {" The Land Before Time XIV: Journey of the Brave"=>65},
-#         {" Hellions"=>67},
-#         {" Hannibal Buress: Animal Furnace"=>71},
-#         {" French Dirty"=>75},
-#         {" Hannibal Buress: Comedy Camisado"=>80}], tree.sort
-#  end
+  def test_load_file
+    tree = BinarySearchTree.new
+    tree.load_file
+    #    assert_equal 1, tree.depth_of(80)
+    assert [{" I Love You Phillip Morris"=>7},
+         {" A Ballerina's Tale"=>9}, {" Love"=>11}, {" Meet My Valentine"=>17},
+         {" Experimenter"=>55},
+         {" The Land Before Time XIV: Journey of the Brave"=>65},
+         {" Hellions"=>67},
+         {" Hannibal Buress: Animal Furnace"=>71},
+         {" French Dirty"=>75},
+         {" Hannibal Buress: Comedy Camisado"=>80}], tree.sort
+  end
 
   def test_get_values_at_depth
-    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
@@ -133,7 +132,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_count_children_at_node
-    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
@@ -143,15 +141,14 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(38, "Charlie's Country")
     tree.insert(69, "Collateral Damage")
     #expected_array = [[[98, 7]], [[58, 6]], [[36, 2], [93, 3]],[[38, 1],[86, 2]], [[69, 10]]]
-    assert_equal 7, tree.count_children(98)
-    assert_equal 6, tree.count_children(58)
-    assert_equal 2, tree.count_children(36)
-    assert_equal 3, tree.count_children(93)
-    assert_equal 2, tree.count_children(86)
-    assert_equal 1, tree.count_children(36)
-    assert_equal 1, tree.count_children(69)
+    assert_equal 6, tree.count_children(tree.find(98))
+    assert_equal 5, tree.count_children(tree.find(58))
+    assert_equal 1, tree.count_children(tree.find(36))
+    assert_equal 2, tree.count_children(tree.find(93))
+    assert_equal 1, tree.count_children(tree.find(86))
+    assert_equal 1, tree.count_children(tree.find(36))
+    assert_equal 0, tree.count_children(tree.find(69))
   end
-
 
     def test_health
     tree = BinarySearchTree.new
@@ -163,36 +160,22 @@ class BinarySearchTreeTest < Minitest::Test
     tree.insert(38, "Charlie's Country")
     tree.insert(69, "Collateral Damage")
 
-    assert_equal [[98, 7, 100]] , tree.health(0)
+    assert_equal [[98, 7, 100]], tree.health(0)
     assert_equal [[58, 6, 85]], tree.health(1)
-    assert_equal ([[36, 2, 28], [93, 3, 42]]) , tree.health(2)
+    assert_equal ([[36, 2, 28], [93, 3, 42]]), tree.health(2)
   end
 
-#   def test_count_children
-#     tree = BinarySearchTree.new
-#     tree.insert(98, "Animals United")
-#     tree.insert(58, "Armageddon")
-#     tree.insert(36, "Bill & Ted's Bogus Journey")
-#     tree.insert(93, "Bill & Ted's Excellent Adventure")
-#     tree.insert(86, "Charlie's Angels")
-#     tree.insert(38, "Charlie's Country")
-#     tree.insert(69, "Collateral Damage")
-#
-#     assert_equal 7, tree.count_children
-#   end
-#
-#   def test_count_left
-#     tree = BinarySearchTree.new
-#     tree.insert(98, "Animals United")
-#     tree.insert(58, "Armageddon")
-#     tree.insert(36, "Bill & Ted's Bogus Journey")
-#     tree.insert(93, "Bill & Ted's Excellent Adventure")
-#     tree.insert(86, "Charlie's Angels")
-#     tree.insert(38, "Charlie's Country")
-#     tree.insert(69, "Collateral Damage")
-#
-#     assert_equal 6, tree.count_left
-#   end
-#
+  def test_count_children
+    tree = BinarySearchTree.new
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    assert_equal 6, tree.count_children
+  end
 
 end

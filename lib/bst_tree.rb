@@ -55,6 +55,20 @@ class BinarySearchTree
     end
   end
 
+  def find(score_to_find, current=@root, depth = 0)
+    if current == nil
+      nil
+    elsif current.score == score_to_find
+      current
+    elsif score_to_find > current.score
+      find(score_to_find, current.right, depth)
+    elsif score_to_find < current.score
+      find(score_to_find, current.left, depth)
+    else
+      nil
+    end
+  end
+
   def depth_of(score, current=@root, depth=0)
    if current == nil
     nil
@@ -87,7 +101,7 @@ class BinarySearchTree
    end
 
   def load_file
-     CSV.foreach('../lib/input.txt', 'r') do |score, title|
+     CSV.foreach('./lib/input.txt', 'r') do |score, title|
        unless include?(score.to_i)
          insert(score.to_i, title.lstrip)
        end
@@ -95,13 +109,25 @@ class BinarySearchTree
 
   end
 
+  def get_values_at_depth(depth, current=@root, result=[])
+    if depth_of(current.score) == depth
+      result << current.score
+    else
+      if current.left
+        result = get_values_at_depth(depth, current.left, result)
+      end
+      if current.right
+        result = get_values_at_depth(depth, current.right, result)
+      end
+    end
+    result
+  end
+
   def health(depth, current=@root, result=[])
     if depth_of(current.score) == depth
       count = 1 + count_children(current)
       total = 1.0 + count_children
-      puts [current.score, count, total].inspect
       result << [current.score, count, ((count/total) * 100).floor]
-      puts result.inspect
     else
       if current.left
         result = health(depth, current.left, result)
@@ -113,15 +139,10 @@ class BinarySearchTree
     result
   end
 
-  private
-
-  def count_children(current=@root, count=0)
-    if current.right
-      count = count_children(current.right, count + 1)
-    end
-    if current.left
-      count = count_children(current.left, count + 1)
-    end
+  def count_children(current=@root)
+    count = 0
+    count += 1 + count_children(current.right) if current.right
+    count += 1 + count_children(current.left) if current.left
     count
   end
 end
